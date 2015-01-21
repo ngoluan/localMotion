@@ -1,0 +1,139 @@
+@font-face{font-family: Lato;src: url(Lato-Regular.ttf);}
+body{
+	font-weight: 200 !important;
+}
+.hiding{display:none;}
+.layer2{z-index:2;}
+.scrollable{overflow-y:scroll;}
+
+.floatRight{float:right;}
+.marginsAuto{margin-left:auto;margin-right:auto;left: 0;right: 0;}.margin0{margin:0;} .marginl6{margin-left:6px;}
+.paddingr8{padding-right:8px !important;}.paddingl8{padding-left:8px !important;} .paddingtb0{padding-top:0; padding-bottom:0;}
+.borderb2{border-bottom:2px solid !important;}
+	.borderBlue{border-bottom-color:#0073ff !important;}
+.borderl2{border-left:2px solid !important;}
+	.borderRed{border-left-color:#CC0000 !important;}
+	.borderBlue{border-left-color:#0073ff !important;}
+.borderr2{border-right:2px solid !important}
+	.borderBlue{border-right-color:#0073ff !important;}
+.ui-footer{background:#333 !important;max-width:600px;}
+.width100{width:100% !important;}
+
+.content{background:#2A2A2A !important;white-space:normal !important;}
+.content p{white-space: normal !important;}
+.no-white-space{white-space:normal !important;}
+.bar{background:#1D1D1D !important;}
+.font12px{font-size:12px;}
+.textalignc{text-align:center;}
+.ui-header{margin:0 10%;}
+
+.backgroundImg{background-image:url('../img/background.jpg') !important;background-size:cover;}
+
+.btn{padding: 0.7em;font-size:13px;height:16px;border:1px solid #1F1F1F;background-color: #333333;cursor:pointer;}
+.btn:hover{background-color:#373737;}
+    .btn-icon{padding-right:0;padding-left:0;}
+    .ui-footer .btn{border:0;}
+    .ui-footer .ui-btn{border:0;}
+.ui-btn h1, h2, h3, h4{font-size:0.8em !important;font-weight:normal !important;}
+button.ui-btn{font-size:0.8em !important;font-weight:normal !important;}
+.ui-btn:focus{box-shadow:0;-webkit-box-shadow:0;}
+
+.icon{height:18px;width:18px;background-position:50% 50%; background-size:18px 18px; background-repeat: no-repeat;}
+.icon.bars{background-image:url('jq/images/icons-svg/bars-white.svg');}
+.ui-icon-bus:after {background-image: url('../img/hi/busIcon.png');background-size: 18px 18px;}
+.ui-icon-streetcar:after {background-image: url('../img/hi/streetcarIcon.png');background-size: 18px 18px;}
+.ui-icon-bike:after {background-image: url('../img/hi/bikeIcon.png');background-size: 18px 18px;}
+.ui-icon-car:after {background-image: url('../img/hi/carIcon.png');background-size: 18px 18px;}
+.ui-icon-parking:after {background-image: url('../img/hi/parkingIcon.png');background-size: 18px 18px;}
+.ui-icon-question:after {background-image: url('../img/hi/questionIcon.png');background-size: 18px 18px;}
+::-webkit-scrollbar-thumb{border-radius:3px;background-color: rgb(27, 27, 27);height:12px; opacity:0.5;}
+::-webkit-scrollbar{width:6px;background:none;}
+
+.ui-page, body{overflow:hidden;}
+.ui-panel {overflow: hidden;}
+    .ui-panel-inner{overflow-y: scroll;}
+#alert{display:none;position:absolute;z-index:99;width:100%;background-color:#2A2A2A;z-index:99; padding:1px 6px 1px 6px;}
+#content{position:absolute;z-index:50;background:#2A2A2A;overflow-y:scroll;display:none; padding:0 6px 6px 6px;}
+	#content .ui-header{margin:0 -6px 0 -6px; width:auto;}
+	#content .ui-header h1{margin:0 10%;}
+	/*#content h1{margin:0 10%;}*/
+#mapOverlay{position:absolute;display:inline-block; left:4px;}
+#clickOverlay{position:absolute;display:none;}
+#search{margin:-14px -12px 20px -12px;}
+.marker{height: 72px;width:72px;}
+.marker.m{height: 36px;width:36px;}
+	.marker.text{text-align:center;width: 80px;top: 50px;position: absolute;font-weight: bold;}
+	.marker.c2g{background: url("../img/hi/c2gMarker.png");background-size:cover;}
+	.marker.c2g.lo{background: url("../img/lo/c2gMarker.png");background-size:cover;}
+	.marker.c2g.parking{background: url("../img/hi/parkingMarker.png");background-size:cover;}
+	.marker.c2g.parking.lo{background: url("../img/lo/parkingMarker.png");background-size:cover;}
+	.marker.c2g.bingo{background: url("../img/hi/c2gBingo.png");background-size:cover;}
+	.marker.c2g.bingo.lo{background: url("../img/lo/c2gBingo.png");background-size:cover;}
+	.marker.nextbus.ttc{background: url("../img/hi/ttcBack.png");background-size:cover;}
+	.marker.nextbus.ttc.lo{background: url("../img/lo/ttcBack.png");background-size:cover;}
+	.marker.nextbus.ttc.m{background: url("../img/hi/ttcBackm.png");background-size:cover;}
+	.marker.nextbus.ttc.lo.m{background: url("../img/hi/ttcBackm.png");background-size:cover;}
+		.marker.nextbus.ttc .inner{position:absolute;height:32px;width:32px;left:21px;top:21px;}
+		.marker.nextbus.ttc.m .inner{position:absolute;height:18px;width:18px;left:9px;top:9px;}
+		.marker.nextbus.ttc .inner .text{position: absolute;top:28px;color:white;width: 100%;text-align: center;font-family: Lato;}
+		.marker.nextbus.ttc.m .inner .text{display:none;}
+			.marker.nextbus.ttc .inner.bus{background: url("../img/hi/ttcBus.png");background-size:cover;}
+			.marker.nextbus.ttc.m .inner.bus{background: url("../img/hi/ttcBusm.png");background-size:cover;}
+			.marker.nextbus.ttc.lo .inner.bus{background: url("../img/lo/ttcBus.png");background-size:cover;}
+			.marker.nextbus.ttc .inner.streetcar{background: url("../img/hi/ttcStreetcar.png");background-size:cover;}
+			.marker.nextbus.ttc.m .inner.streetcar{background: url("../img/hi/ttcStreetcarm.png");background-size:cover;}
+			.marker.nextbus.ttc.lo .inner.streetcar{background: url("../img/lo/ttcStreetcar.png");background-size:cover;}
+
+	.marker.nextbus.thunderbay{background: url("../img/hi/thunderbayBack.png");background-size:cover;}
+	.marker.nextbus.thunderbay.lo{background: url("../img/hi/thunderbayBack.png");background-size:cover;}
+	.marker.nextbus.thunderbay.m{background: url("../img/hi/thunderbayBackm.png");background-size:cover;}
+	.marker.nextbus.thunderbay.lo.m{background: url("../img/hi/thunderbayBackm.png");background-size:cover;}
+		.marker.nextbus.thunderbay .inner{position:absolute;height:32px;width:32px;left:21px;top:21px;}
+		.marker.nextbus.thunderbay.m .inner{position:absolute;height:18px;width:18px;left:9px;top:9px;}
+		.marker.nextbus.thunderbay .inner .text{position: absolute;top:28px;color:white;width: 100%;text-align: center;font-family: Lato;}
+		.marker.nextbus.thunderbay.m .inner .text{display:none;}
+			.marker.nextbus.thunderbay .inner.bus{background: url("../img/hi/thunderbayBus.png");background-size:cover;}
+			.marker.nextbus.thunderbay.m .inner.bus{background: url("../img/hi/thunderbayBusm.png");background-size:cover;}
+			.marker.nextbus.thunderbay.lo .inner.bus{background: url("../img/hi/thunderbayBus.png");background-size:cover;}
+
+	.marker.nextbus.sherbrooke{background: url("../img/hi/sherbrookeBack.png");background-size:cover;}
+	.marker.nextbus.sherbrooke.lo{background: url("../img/hi/sherbrookeBack.png");background-size:cover;}
+	.marker.nextbus.sherbrooke.m{background: url("../img/hi/sherbrookeBackm.png");background-size:cover;}
+	.marker.nextbus.sherbrooke.lo.m{background: url("../img/hi/sherbrookeBackm.png");background-size:cover;}
+		.marker.nextbus.sherbrooke .inner{position:absolute;height:32px;width:32px;left:21px;top:21px;}
+		.marker.nextbus.sherbrooke.m .inner{position:absolute;height:18px;width:18px;left:9px;top:9px;}
+		.marker.nextbus.sherbrooke .inner .text{position: absolute;top:28px;color:white;width: 100%;text-align: center;font-family: Lato;}
+		.marker.nextbus.sherbrooke.m .inner .text{display:none;}
+			.marker.nextbus.sherbrooke .inner.bus{background: url("../img/hi/sherbrookeBus.png");background-size:cover;}
+			.marker.nextbus.sherbrooke.m .inner.bus{background: url("../img/hi/sherbrookeBusm.png");background-size:cover;}
+			.marker.nextbus.sherbrooke.lo .inner.bus{background: url("../img/hi/sherbrookeBus.png");background-size:cover;}
+
+	.marker.nextbus.stl{background: url("../img/hi/stlBack.png");background-size:cover;}
+	.marker.nextbus.stl.lo{background: url("../img/hi/stlBack.png");background-size:cover;}
+	.marker.nextbus.stl.m{background: url("../img/hi/stlBackm.png");background-size:cover;}
+	.marker.nextbus.stl.lo.m{background: url("../img/hi/stlBackm.png");background-size:cover;}
+		.marker.nextbus.stl .inner{position:absolute;height:32px;width:32px;left:21px;top:21px;}
+		.marker.nextbus.stl.m .inner{position:absolute;height:18px;width:18px;left:9px;top:9px;}
+		.marker.nextbus.stl .inner .text{position: absolute;top:28px;color:white;width: 100%;text-align: center;font-family: Lato;}
+		.marker.nextbus.stl.m .inner .text{display:none;}
+			.marker.nextbus.stl .inner.bus{background: url("../img/hi/stlBus.png");background-size:cover;}
+			.marker.nextbus.stl.m .inner.bus{background: url("../img/hi/stlBusm.png");background-size:cover;}
+			.marker.nextbus.stl.lo .inner.bus{background: url("../img/hi/stlBus.png");background-size:cover;}
+
+	.marker.go{background: url("../img/hi/goMarker.png");background-size:cover;}
+	.marker.go.lo{background: url("../img/lo/goMarker.png");background-size:cover;}
+.markersm{height:18px;width:18px;}
+	.markersm.busStop{background: url("../img/hi/busstopMarker.png");background-size:cover;}
+	.markersm.busStop.lo{background: url("../img/lo/busstopMarker.png");background-size:cover;}
+	.markersm.subway{background: url("../img/hi/subwayMarker.png");background-size:cover;}
+	.markersm.subway.lo{background: url("../img/lo/subwayMarker.png");background-size:cover;}
+
+div.textMarker {background:-moz-radial-gradient(center,ellipse cover,rgba(122,188,255,1) 0,rgba(96,171,248,.82) 44%,rgba(64,150,238,.6) 100%);background:-webkit-gradient(radial,center center,0,center center,100%,color-stop(0%,rgba(122,188,255,1)),color-stop(44%,rgba(96,171,248,.82)),color-stop(100%,rgba(64,150,238,.6)));background:-webkit-radial-gradient(center,ellipse cover,rgba(122,188,255,1) 0,rgba(96,171,248,.82) 44%,rgba(64,150,238,.6) 100%);background:-o-radial-gradient(center,ellipse cover,rgba(122,188,255,1) 0,rgba(96,171,248,.82) 44%,rgba(64,150,238,.6) 100%);background:-ms-radial-gradient(center,ellipse cover,rgba(122,188,255,1) 0,rgba(96,171,248,.82) 44%,rgba(64,150,238,.6) 100%);background:radial-gradient(ellipse at center,rgba(122,188,255,1) 0,rgba(96,171,248,.82) 44%,rgba(64,150,238,.6) 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#994096ee', GradientType=1);float:left;position:relative;color:#fff;padding:10px;border-radius:3px;margin:25px;min-height:10px;text-shadow:0 0 1px #000;max-width:200px;text-align:center;z-index:3;}
+    .textMarker::before {content:"";width:0;height:0;border:.8em solid transparent;position:absolute;left:45%;bottom:-25px;border-top:17px solid #4096ee;z-index:2;opacity:.6;}
+
+.full-width-slider input {
+    display: none;
+}
+.full-width-slider .ui-slider-track {
+    margin-left: 15px;
+}

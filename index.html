@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>localMotion</title>
+<link rel="stylesheet"  href="lib/jq/jquery.mobile.structure-1.4.2.min.css">
+<link rel="stylesheet"  href="lib/jq/jquery.mobile.icons-1.4.2.min.css">
+<link rel="stylesheet"  href="lib/jq/theme.min.css">
+<link rel="stylesheet"  href="lib/lm.css">
+<script type="text/javascript" src="phonegap.js"></script>
+<script src="lib/jq/jquery-1.10.2.min.js"></script>
+<script src="lib/jq/jquery.mobile-1.4.2.min.js"></script>
+<script src="lib/lm.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDanfrkNLdf5vDKb861Z3Et-z2BiLzZPc0&sensor=true&libraries=geometry,places"></script>
+<script type="text/javascript" src="lib/richmarker.js" ></script>
+<script type="text/javascript" src="lib/markerclusterer.js" ></script>
+
+</head>
+<body>
+
+<!--page-->
+<div data-role="page" id="home">
+	<div id="alert" class="maxWidth marginsAuto"></div>
+	<div id="content" class="maxHeight75 maxWidth marginsAuto"></div>
+
+	<div id="mapOverlay" class="layer2">
+	    <a href="#" data-target="dash" class="ui-btn ui-icon-grid ui-btn-icon-notext ui-btn-b ui-corner-all">Dashboard</a>
+	    <a href="#" data-action="getPosition" class="ui-btn ui-icon-location ui-btn-icon-notext ui-btn-b ui-corner-all">Location</a>
+	    <a href="#" data-action="refresh" class="ui-btn ui-icon-refresh ui-btn-icon-notext ui-btn-b ui-corner-all">Refresh</a>
+		<a href="#" data-module="c2g"  data-action="showParking" class="ui-btn ui-icon-parking ui-btn-icon-notext ui-btn-b ui-corner-all">Parking</a>
+		<a href="#" data-module="nextbus"  data-action="zoomToStops" class="ui-btn ui-icon-bus ui-btn-icon-notext ui-btn-b ui-corner-all">ShowStops</a>
+	</div>
+	<div id="clickOverlay" class="layer2">
+		<ul data-role='listview' class="margint0">
+			<li data-icon="arrow-l" data-target="dash"><a data-action="dirFrom" href="#">Directions From:</a></li>
+			<li data-icon="arrow-r" data-target="dash"><a data-action="dirTo" href="#">Directions To:</a></li>
+<!--			<li data-icon="bus" data-target="map" data-module="nextbus"><a data-action="zoomToStops" href="#">Show Stops Here:</a></li>
+			<li data-icon="delete" data-target="map"><a data-action="close" href="#">Close</a></li>-->
+		</ul>
+<!--	    <a href="#" data-action="dirTo" class="ui-btn ui-icon-arrow-r ui-btn-icon-notext ui-btn-b ui-corner-all">GetDirTo</a>
+	    <a href="#" data-action="dirFrom" class="ui-btn ui-icon-arrow-l ui-btn-icon-notext ui-btn-b ui-corner-all">GetDirFrom</a>-->
+	</div>
+
+	<div id="map"></div>
+	<div id="footer" data-role="footer" class="marginsAuto hiding"  data-position="fixed" data-tap-toggle="false"></div>
+	<div data-role="panel" id="panel" data-display="overlay">
+		<div id="search">
+			<input type="text" value="" placeholder="Search: [Press enter]">
+			<div id="searchResults"><ul data-role="listview"></ul></div>
+		</div>
+		<ul data-role='listview' data-name="buttons" class="margint0" style="margin-bottom:0;">
+			<li data-icon="grid" data-target="dash"><a href="#">Dashboard</a></li>
+			<li data-icon="location" data-action="getPosition"><a href="#">Get Position</a></li>
+			<li data-icon="refresh" class="hiding" data-action="refresh"><a href="#">Refresh</a></li>
+			<li data-icon="arrow-r"><a href="#" data-action="dir">Get Directions</a></li>
+			<li data-icon="check"><a href="#" data-module="ttc" data-action="feedback" data-type="compliment">Report Good Service</a></li>
+			<li data-icon="delete"><a href="#" data-module="ttc" data-action="feedback" data-type="critique">Report Poor Service</a></li>
+			<li data-icon="bus"><a href="#" data-module="nextbus" data-action="zoomToStops">Show Stops</a></li>
+			<li data-icon="arrow-r"><a href="#" data-module="go" data-action="listRoutes">Show Routes</a></li>
+			<li data-icon="alert"><a href="#" data-module="ttc" data-action="showAlerts">Show Alerts</a></li>
+			<li data-role="list-divider">Overlays</li>
+			<li data-icon="parking" data-module="c2g"><a href="#" data-action="showParking">Parking</a></li>
+			<li data-icon="car" data-module="c2g"><a href="#" data-action="showBookings">Bookings</a></li>
+			<li data-icon="alert"  data-module="c2g"><a href="#" data-action="bingoFuel">Bingo Fuel</a></li>
+			<li data-icon="bike" ><a href="#" data-action="setLayers" data-target="bikeLanes">Bike Lanes</a></li>
+			<li data-icon="car" ><a href="#" data-action="setLayers"  data-target="traffic">Traffic</a></li>
+			<li data-role="list-divider">General</li>
+			<li data-icon="info"><a href="#"  data-target="news">News</a></li>
+			<li data-icon="comment"><a href="#" data-target="board">Board</a></li>
+			<li data-icon="user"><a href="#" data-target="account">Account</a></li>
+			<li data-icon="gear"><a href="#"  data-target="config">Settings</a></li>
+			<li data-icon="question"><a href="#"  data-target="help">Help</a></li>
+			<li data-icon="shop" data-name="apps"><a href="#"  data-target="apps">Mobile App</a></li>
+		</ul>
+		<span style="font-size:0.7em;">Contains information licensed under the Open Government Licence – Toronto.</span>
+	</div>
+	<div data-role="popup" id="configPop">
+		<div data-role="tabs" class="padding0">
+			<div data-role="navbar" class="marginr6">
+				<ul>
+					<li><a href="#config" data-ajax="false" class="ui-btn-active">General</a></li>
+					<li><a href="#account" data-ajax="false">Account</a></li>
+				</ul>
+			</div>
+			<div data-name="body" class="scrollable maxHeight8 minwidthOpt"></div>
+		</div>
+	</div>
+
+</div>
+
+</body>
+<script>
+$(document).bind('pageshow', function(){init(); events();});
+
+window.onresize = function(event) {
+    setDim();
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41316831-1', 'local-motion.ca');
+  ga('send', 'pageview');
+
+</script>
+</html>

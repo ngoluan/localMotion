@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>localMotion</title>
+<link rel="stylesheet"  href="lib/jq/jquery.mobile.structure-1.4.1.min.css">
+<link rel="stylesheet"  href="lib/jq/jquery.mobile.icons.min.css">
+<link rel="stylesheet"  href="lib/jq/theme.min.css">
+<link rel="stylesheet"  href="lib/lm.css">
+<script src="lib/jq/jquery-1.10.2.min.js"></script>
+<script src="lib/jq/jquery.mobile-1.4.1.min.js"></script>
+<script src="lib/lm.js"></script>
+</head>
+<body>
+
+<!--page-->
+<div id="config">
+	<div data-role="header"  class="backgroundImg">
+		<h1 style="font-size:2em;padding-top:0; padding-bottom:0;">localMotion</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+	<p data-type="firstTime">Commute easier with localMotion!</p>
+	<form>
+	    <ul data-role="listview" data-inset="true">
+	    	<li data-role="list-divider" data-type="firstTime" style="white-space: normal;"> To get started, select your city and the desired services:</li>
+	    	<li class="ui-field-contain">
+	            <label>Language & city:</label>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<select data-name="lang">
+						<option value="en">English</option>
+						<option value="fr" disabled="true">French</option>
+					</select>
+					<select data-name="city">
+						<option value="toronto">Toronto</option>
+						<option value="montreal">Montreal</option>
+						<option value="sherbrooke">Sherbrooke</option>
+						<option value="laval">Laval</option>
+						<option value="ottawa">Ottawa</option>
+						<option value="thunder_bay">Thunder Bay</option>
+					</select>
+				</fieldset>
+		    </li>
+	        <li class="ui-field-contain">
+	    		<label for="name2">Select services:</label>
+				<ul data-role="listview" data-name="services" data-inset="true">
+					<li data-name="nextbus"><a data-name="nextbus" href="#" data-toggle="true" class="ui-btn ui-btn-active ui-icon-check ui-btn-icon-right"> <img src="img/hi/ttcMarker.png">
+						<h2>NextBus</h2>
+						<p class="no-white-space">See location of buses and streetcars on a map in real-time</p>
+						<p class="no-white-space">Get the estimated arrival times of the next vehicle in real-time</p>
+						</a> </li>
+					<li data-name="bixi"><a data-name="bixi" href="#" data-toggle="true"  class="ui-btn ui-btn-active ui-icon-check ui-btn-icon-right"> <img src="img/hi/bixiMarker5.png">
+					<h2>bixi</h2>
+						<p class="no-white-space">See where each station is on the map and in StreetView</p>
+						<p class="no-white-space">Check how many empty docks and free bikes at each station</p>
+					</a> </li>
+					<li data-name="c2g"><a data-name="c2g" href="#" data-toggle="true" class="ui-btn ui-btn-active ui-icon-check ui-btn-icon-right"> <img src="img/hi/c2gMarker.png">
+					<h2>car2go</h2>
+						<p class="no-white-space">See all vehicles and parking spots on a map</p>
+						<p class="no-white-space">Reserve car2go vehicles</p>
+						<p class="no-white-space">Find vehicles with low fuel to take advantage of free minutes</p>
+					</a> </li>
+					<li data-name="go"><a data-name="go" href="#" data-toggle="true" class="ui-btn ui-btn-active ui-icon-check ui-btn-icon-right"> <img src="img/hi/goMarker.png">
+					<h2>GO Transit</h2>
+						<p class="no-white-space">See all GO transit stops</p>
+						<p class="no-white-space">Check transit schedules</p>
+						<p class="no-white-space">Get directions</p>
+					</a> </li>
+				</ul>
+	        </li>
+	        <li data-role="list-divider"> Other options</li>
+	        <li class="ui-field-contain">
+	            <label for="startup">Start on:</label>
+		        <select name="startup" id="startup" data-role="slider">
+				    <option value="dash">Dash</option>
+				    <option value="map">Map</option>
+				</select>
+		    </li>
+	    	<li class="ui-field-contain">
+	            <label for="imgRes">Icon quality:</label>
+		        <select name="imgRes" id="imgRes" data-role="slider">
+				    <option value="hi">High</option>
+				    <option value="lo">Low</option>
+				</select>
+		    </li>
+	    </ul>
+	</form>
+	<button class="ui-btn" data-name="done">Done!</button>
+</div>
+<div id="account">
+	<div data-role="header">
+		<h1>Account Settings</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Exit</button>
+	</div>
+	<div data-name="reg" data-module='nouser'>
+        <input type="text" name="email" placeholder="Enter email"  autocomplete="off">
+        <input type="password" name="password" value="" autocomplete="off" placeholder="Enter password">
+        <div class="ui-grid-a">
+            <div class="ui-block-a paddingr8"><button data-action="register" class="ui-btn ui-corner-all">Register</button></div>
+            <div class="ui-block-b paddingl8"><button data-action="login" class="ui-btn ui-corner-all">Login</button></div>
+        </div><!-- /grid-a -->
+        <div data-name="wrongLogin" class="hiding ">
+            <button data-action="passReset" class="ui-btn ui-corner-all">Reset Password</button>
+        </div>
+    </div><!-- /reg -->
+    <div class="hiding" data-module='user'>
+        <div data-role="collapsible" data-enhanced="true" data-module="c2g" class="ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-collapsed">
+		    <h4 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+		        <a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-icon-plus" data-action='access'>
+		        Get access to car2go
+		        </a>
+		    </h4>
+		    <div class="ui-collapsible-content ui-collapsible-content-collapsed " aria-hidden="true" data-name="result">
+		    <p>Step 1: Login to car2go</p>
+
+		    <iframe src="" style="height:300px;"></iframe>
+		    <p>Step 2: Complete linking accounts</p>
+		    <a href="#" data-action="linkc2g" class="ui-btn">Link accounts</a>
+		    </div>
+		</div>
+        <div class="ui-grid-a">
+            <div class="ui-block-a paddingr8"><button data-action="signout" class="ui-btn ui-corner-all">Sign Out</button></div>
+            <div class="ui-block-b paddingl8"><button data-action="deleteacc" class="ui-btn ui-corner-all ui-disabled">Delete Account</button></div>
+        </div><!-- /grid-b -->
+    </div>
+</div>
+<div id="board">
+	<div data-role="header">
+		<h1>Board</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+	<div data-module='user'>
+		<textarea cols="40" rows="2" name="comment" placeholder="Write something.."></textarea>
+		<div class="ui-grid-a">
+		    <div class="ui-block-a">
+		    	<a href="#" data-type="location" class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-notext ui-corner-all">No text</a>
+		    	<a href="#" data-type="vehicle" data-module="ttc"  class="ui-btn ui-btn-inline ui-icon-bus ui-btn-icon-notext ui-corner-all">No text</a>
+		    	<a href="#" data-type="station" data-module="bixi" class="ui-btn ui-btn-inline ui-icon-bike ui-btn-icon-notext ui-corner-all">No text</a>
+		    </div>
+		    <div class="ui-block-b">
+		    	<a href="#" data-action="post" class="ui-btn font12px ui-btn-inline ui-corner-all floatRight">Post</a>
+		    </div>
+		</div><!-- /grid-a -->
+	</div>
+	<ul data-role="listview">
+    <li><a href="index.html" class="content ui-icon-back">
+    <p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+    <p>- Stephen Weber</p>
+        <p class="ui-li-aside">6:24 pm</p>
+    </a></li>
+	</ul>
+</div>
+<div id="dir">
+	<div data-role="header">
+		<h1>Directions</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+	<input type="text" name="from" placeholder="From..." value="From: Current Position">
+    <input type="text" name="to" placeholder="To...">
+    <button data-action="go" class="ui-btn ui-corner-all ui-btn-full-icon">Go</button>
+    <p  class="content">Tip: Press and hold on the map to set origin or destination.</p>
+	<ul data-name="listview"></ul>
+</div>
+<div id="getStarted">
+	<div data-role="header"  class="backgroundImg">
+		<h1 style="font-size:2em;padding-top:0; padding-bottom:0;">localMotion</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+	<div class="ui-field-contain">
+    <select name="select-native-1" id="select-native-1">
+        <option value="toronto">Toronto</option>
+        <option value="montreal">Montreal</option>
+        <option value="ottawa">Ottawa</option>
+    </select>
+	</div>
+	<p>Commute easier with localMotion! Main features include:</p>
+
+	<table>
+		<tr>
+			<td colspan="2">
+				<strong>TTC</strong>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>See location of buses and streetcars  on a map in real-time</li>
+					<li>Get the estimated arrival times of the next vehicle in real-time</li>
+					<li>Provide feedback to TTC customer service</li>
+				</ul>
+			</td>
+			<td>
+				 <img src="img/hi/ttcMarker.png">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<strong>BIXI</strong>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+				<li>See where each station is on the map and in StreetView</li>
+				<li>Check how many empty docks and free bikes at each station</li>
+				</ul>
+			</td>
+			<td>
+				 <img src="img/hi/bixiMarker5.png">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<strong>car2go</strong>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>See all vehicles and parking spots on a map</li>
+					<li>Reserve car2go vehicles</li>
+					<li>Find vehicles with low fuel to take advantage of free minutes</li>
+				</ul>
+			</td>
+			<td>
+				 <img src="img/hi/c2gMarker.png">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<strong>GO Transit</strong>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>See all GO transit stops</li>
+					<li>Check transit schedules</li>
+					<li>Get directions</li>
+				</ul>
+			</td>
+			<td>
+				 <img src="img/hi/goMarker.png">
+			</td>
+		</tr>
+	</table>
+	<p>Before you get started, allow your location to be shared to get full functionality</p>
+	<button data-action="getStarted" class="ui-btn ui-corner-all ui-btn-full-icon">Go!</button>
+</div>
+<div id="help">
+	<div data-role="header">
+		<h1>Help</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+
+	<div data-role="collapsible-set" data-inset="true">
+	    <div data-role="collapsible">
+	        <h3>General</h3>
+	        <ul data-role="listview" data-inset="false">
+				<li class="content">
+					<h1>Why should you get an account?</h1>
+					<p>Honestly, you probably shouldn't. The only thing it allows you to do right now is the ability to reserve cars in car2go and post messages on the board. If that's useful to you, well, you only need have two things to fill in: email and password. </p>
+				</li>
+				<li class="content">
+					<h1>What kind of information do you collect?</h1>
+					<p>Only what you deliberately provide me. I don't even collect bug reports (although I should). Soon, you'll have the ability to delete your account with all the corresponding information.  </p>
+				</li>
+				<li class="content">
+					<h1>What do you do when you see a bug?</h1>
+					<p>Please post it on the board! I'm trying to make this as bug free as possible and am willing to fix every little annoyance or add any useful feature.</p>
+				</li>
+				<li class="content">
+					<h1>What's the dashboard?</h1>
+					<p>I'm hoping that it's all the information that you would need at your fingertips. For TTC, it's the nearest vehicles' predicted arrival times. For BIXI, it's the nearest stations and how many free bikes or empty docks at that station. With car2go, it would be the nearest available car (would be because I haven't implemented this yet).</p>
+				</li>
+				<li class="content">
+					<h1>How do I set directions?</h1>
+					<p>You can either type it in or tap and hold on the map to pick a destination/origin.</p>
+				</li>
+	        </ul>
+	    </div>
+	    <div data-role="collapsible">
+	        <h3>TTC</h3>
+	        <ul data-role="listview" data-inset="false">
+				<li class="content">
+					<h1>How to see TTC stops?</h1>
+					<p>Once you zoom into a certain level, TTC stops will appear which you can tap on to get more details</p>
+				</li>
+				<li class="content">
+					<h1>How to get vehicle details?</h1>
+					<p>Just click on a TTC vehicle and details about that vehicle will appear including estimated time of arrival at next stops and location history of that vehicle. Each fading icon represents that vehicle's location at one minute intervals.</p>
+				</li>
+				<li class="content">
+					<h1>How to get details about a route?</h1>
+					<p>Just type in the route number in the search dialogue and click on the desired route.</p>
+				</li>
+				<li class="content">
+					<h1>How to give feedback to TTC?</h1>
+					<p>Click on a vehicle and in the details, you are given the option of providing good or poor feedback to the TTC. Due to technical issues with TTC's own customer service feedback page, your comments will be relayed to TTC's customer service Twitter account at #TTCHelps. </p>
+					<p>Note: I would happily give you the option of providing feedback directly (and more discreetly) to the TTC through their customer service page but my request to do that has gone without a response since Summer 2013.</p>
+				</li>
+				<li class="content">
+					<h1>How up-to-date is the information?</h1>
+					<p>The information is provided by NextBus and the City of Toronto (which I am very gracious for) with a maximum lag on my end of one minute.</p>
+				</li>
+	        </ul>
+	    </div>
+	    <div data-role="collapsible">
+	        <h3>BIXI</h3>
+	        <ul data-role="listview" data-inset="false">
+				<li class="content">
+					<h1>I can't find the station.</h1>
+					<p>Try clicking on the station, which would show you the details. A StreetView image has been provided to help you find the station.</p>
+				</li>
+				<li class="content">
+					<h1>The station isn't on StreetView.</h1>
+					<p>Try clicking on Open Streetview, which will open the REAL StreetView. Here, you can look around to find the station. If you do, please save it for the next person! If you can't, sometimes BIXI stations move and the StreetView may be outdated. Sorry!</p>
+				</li>
+				<li class="content">
+					<h1>LocalMotion said that there were xx amount of bikes/docks at a station and it was wrong!</h1>
+					<p>I know. This happened to me a couple of times. I get the data right from BIXI and sometimes BIXI lies. I don't know what to do to fix this yet but, thankfully, it's rare.</p>
+				</li>
+	        </ul>
+	    </div>
+	    <div data-role="collapsible">
+	        <h3>car2go</h3>
+	        <ul data-role="listview" data-inset="false">
+				<li class="content">
+					<h1>How do I book a car? </h1>
+					<p>Just click on a car on the map and you should be able to book it when the details slide down.</p>
+				</li>
+				<li class="content">
+					<h1>What's the “Bingo Fuel” button for?</h1>
+					<p>Well, did you know that if you fuel up on a car that has less than 25 per cent fuel, you get 20 free car2go minutes? Ever wonder where those low-fueled cars are? Well, click on this button. </p>
+				</li>
+
+	        </ul>
+	    </div>
+	</div>
+</div>
+<div id="apps">
+	<div data-role="header">
+		<h1>Get Mobile App</h1>
+		<button class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right  ui-icon-delete ui-btn-icon-notext ui-nodisc-icon">Save</button>
+	</div>
+	<p>Get the mobile app in:</p>
+	<ul data-role="listview">
+	   	<li><a href="https://appworld.blackberry.com/webstore/content/29209888/?CPID=PRD_BBWSH_MySpace&countrycode=CA&lang=en">
+	        <img src="img/blackberryIcon.png" style="opacity:0.5;">
+	    <h1>Blackberry World</h1></a>
+	    </li>
+		<li><a href="https://play.google.com/store/apps/details?id=com.luan.localmotion&hl=en">
+	        <img src="img/androidIcon.png" style="opacity:0.5;">
+	    <h1>Google Play</h1></a>
+	    </li>
+
+	</ul>
+</div>
+</body>
+</html>
